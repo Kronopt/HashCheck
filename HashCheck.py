@@ -4,19 +4,31 @@
 '''
 HASHCHECK
 
-TO DO DESCRIPTION
+Calculates file hashes (single file or entire directories) using different hashing algorithms
 
-TO DO DEPENDENCIES
-TO DO HOW TO RUN
-TO DO REQUIRES
-TO DO ENSURES
+
+DEPENDENCIES:
+    - Python 2.7
+    ### - WINDOWS
+
+HOW TO RUN:
+    - Directly, by double clicking the script.
+      Calculates md5 hashes for every file available in the current directory
+      
+    - Through the command line.
+      Allows for the hashing of single files or other entire directories;
+      Allows the selection of the hashing algorithm;
+      For more help, call the script with the -h parameter
 '''
 
 __author__ = 'Pedro HC David, https://github.com/Kronopt'
 __credits__ = ['Pedro HC David']
 __version__ = '0.2'
-__date__ = '02:00h, 25/05/2016'
+__date__ = '20:50h, 27/05/2016'
 __status__ = 'Production'
+
+
+
 
 # Feeding file a chunk at a time, instead of loading it as a whole to memory
 # When Hashing every file on the same directory, ask ipermission to proceed with hash if multiple "not dir" files exist
@@ -25,9 +37,24 @@ __status__ = 'Production'
 # Allow relative path of files (relative to current directory)
 
 
+
+
 def hashCheck(hashAlgorithm, fileName):
-    """
-    """
+    '''
+    Main function
+    Calculates the hash of 'fileName' using the hashing algorithm specified in 'hashAlgorithm'
+
+
+    hashAlgorithm: str, representing a hashing algorithm
+    fileName: str, representing a file path
+    
+    REQUIRES:
+        - Hashing algorithm available in the hashlib library
+        - Existing file 'fileName'
+    
+    ENSURES:
+        Hash of 'fileName' using 'hashAlgorithm'
+    '''
     
     with open(fileName, 'rb') as fileToCheck:
         # defaults to md5
@@ -39,8 +66,21 @@ def hashCheck(hashAlgorithm, fileName):
 
 
 def multipleHashCheck(hashAlgorithm, directory):
-    """
-    """
+    '''
+    Runs the hashCheck function for every file in a directory or for a single file
+    Checks wether 'directory' exists and if its  really a directory or just a file
+
+    
+    hashAlgorithm: str, representing a hashing algorithm
+    directory: str, representing a file path or a directory
+
+    REQUIRES:
+        Hashing algorithm available in the hashlib library
+    
+    ENSURES:
+        Hash of 'directory' using 'hashAlgorithm' if it's a file or hash of every file in
+        the directory if it's a directory
+    '''
 
     # only allows full paths... yet
     if os.path.exists(directory):
