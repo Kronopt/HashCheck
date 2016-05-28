@@ -6,7 +6,6 @@ HASHCHECK
 
 Calculates file hashes (single file or entire directories) using different hashing algorithms
 
-
 DEPENDENCIES:
     - Python 2.7
     ### - WINDOWS
@@ -20,6 +19,10 @@ HOW TO RUN:
       Allows the selection of the hashing algorithm;
       For more help, call the script with the -h parameter
 '''
+
+import argparse
+import hashlib
+import os
 
 __author__ = 'Pedro HC David, https://github.com/Kronopt'
 __credits__ = ['Pedro HC David']
@@ -64,7 +67,6 @@ def hashCheck(hashAlgorithm, fileName):
 	# The "\" might fail on non windows operating systems...
 	print hashAlgorithm, "hash for '" + os.path.split(fileName.rstrip('\\'))[1] + "': " + hashOutput
 
-
 def multipleHashCheck(hashAlgorithm, directory):
     '''
     Runs the hashCheck function for every file in a directory or for a single file
@@ -101,12 +103,7 @@ def multipleHashCheck(hashAlgorithm, directory):
     else:
         print "'" + directory + "' does not exist..."
 
-
 if __name__ == '__main__':
-    import argparse
-    import hashlib
-    import os
-
     # Default = -hash md5 -file os.getcwd()
     parser = argparse.ArgumentParser(description = 'Multiple hash algorithm check tool')
 
