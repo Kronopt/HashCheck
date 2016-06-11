@@ -30,18 +30,6 @@ __version__ = '0.3'
 __date__ = '18:53h, 31/05/2016'
 __status__ = 'Production'
 
-
-
-
-# Verbose mode (time it takes to hash, number of files to hash, etc)
-# Feeding file a chunk at a time, instead of loading it as a whole to memory
-# Allow multithreading
-# Allow to compare an input hash (returns true or false if hash is the same or not)
-# Allow relative path of files (relative to current directory)
-
-
-
-
 def main(hashAlgorithm, directory):
     '''
     Runs the hashCheck function for every file in a directory or for a single file
