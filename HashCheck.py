@@ -3,12 +3,10 @@
 
 '''
 HASHCHECK
-
 Calculates file hashes (single file or entire directories) using different hashing algorithms
 
 DEPENDENCIES:
     - Python 2.7
-    ### - WINDOWS
 
 HOW TO RUN:
     - Directly, by double clicking the script.
@@ -26,18 +24,20 @@ import os
 
 __author__ = 'Pedro HC David, https://github.com/Kronopt'
 __credits__ = ['Pedro HC David']
-__version__ = '0.3'
-__date__ = '18:53h, 31/05/2016'
+__version__ = '0.4'
+__date__ = '14:27h, 15/06/2016'
 __status__ = 'Production'
 
 def main(hashAlgorithm, directory):
     '''
     Runs the hashCheck function for every file in a directory or for a single file
-    Checks wether 'directory' exists and if it's really a directory or just a file
+    Checks whether 'directory' is really a directory or just a file
 
-    
-    hashAlgorithm: str, representing a hashing algorithm
-    directory: str, representing a file path or a directory
+    PARAMETERS:
+        hashAlgorithm : str
+            Represents a hashing algorithm
+        directory : str
+            Represents a file path or a directory
 
     REQUIRES:
         Hashing algorithm available in the hashlib library
@@ -47,36 +47,36 @@ def main(hashAlgorithm, directory):
         the directory if it's a directory
     '''
 
-    # only allows full paths... yet
-    if os.path.exists(directory):
-        if os.path.isdir(directory):
-            os.chdir(directory)
+    # Handles directories
+    if os.path.isdir(directory):
+        filesToHash = filter(os.path.isfile, os.listdir(directory))
+        filesToHash.sort()
 
-            filesToHash = filter(os.path.isfile, os.listdir(directory))
-            filesToHash.sort()
+        for i in filesToHash:
+            print hashAlgorithm, "hash for '" + i + "': " + hashCheck(hashAlgorithm, i)
 
-            for i in filesToHash:
-                print hashAlgorithm, "hash for '" + i + "': " + hashCheck(hashAlgorithm, i)
-                
-        elif os.path.isfile(directory):
-            hashCheck(hashAlgorithm, directory)
-            # only prints the actual file name, not the whole path
-            print hashAlgorithm, "hash for '" + os.path.split(directory)[1] + "': " + \
-                  hashCheck(hashAlgorithm, directory)
-
-        raw_input()
-            
+    # Handles single files
+    elif os.path.isfile(directory):
+        hashCheck(hashAlgorithm, directory)
+        # only prints the actual file name, not the whole path
+        print hashAlgorithm, "hash for '" + os.path.split(directory)[1] + "': " \
+              + hashCheck(hashAlgorithm, directory)
+        
     else:
         print "'" + directory + "' does not exist..."
+
+    raw_input()
 
 def hashCheck(hashAlgorithm, fileName):
     '''
     Main function
     Calculates the hash of 'fileName' using the hashing algorithm specified in 'hashAlgorithm'
 
-
-    hashAlgorithm: str, representing a hashing algorithm
-    fileName: str, representing a file path
+    PARAMETERS:
+        hashAlgorithm : str
+            Represents a hashing algorithm
+        fileName : str
+            Represents a file path
     
     REQUIRES:
         - Hashing algorithm available in the hashlib library
