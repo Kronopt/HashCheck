@@ -24,8 +24,8 @@ import os
 
 __author__ = 'Pedro HC David, https://github.com/Kronopt'
 __credits__ = ['Pedro HC David']
-__version__ = '0.4'
-__date__ = '14:27h, 15/06/2016'
+__version__ = '0.5'
+__date__ = '02:00h, 16/06/2016'
 __status__ = 'Production'
 
 def main(hashAlgorithm, directory):
@@ -88,9 +88,12 @@ def hashCheck(hashAlgorithm, fileName):
     
     with open(fileName, 'rb') as fileToCheck:
         # defaults to md5
-        hashOutput = getattr(hashlib, hashAlgorithm, 'md5')(fileToCheck.read()).hexdigest()
-
-        return hashOutput
+        hashOutput = getattr(hashlib, hashAlgorithm, 'md5')()
+        
+        for line in fileToCheck:
+            hashOutput.update(line)
+        
+        return hashOutput.hexdigest()
 
 if __name__ == '__main__':
     # Default = -hash md5 -file os.getcwd()
