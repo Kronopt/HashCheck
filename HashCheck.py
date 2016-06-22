@@ -2,7 +2,7 @@
 # coding: utf-8
 
 '''
-HASHCHECK
+HASH CHECK
 Calculates file hashes (single file or entire directories) using different hashing algorithms
 
 DEPENDENCIES:
@@ -101,7 +101,7 @@ if __name__ == '__main__':
 
     parser.add_argument('-hash', choices = hashlib.algorithms, default = 'md5',
                         help = 'Available hash algorithms (chose one)')
-    parser.add_argument('-file', nargs ='?', const= os.getcwd(), default = os.getcwd(),
+    parser.add_argument('-file', nargs = '?', const = os.getcwd(), default = os.getcwd(),
                         metavar = 'dir', help = 'Directory or file path')
 
     parser = parser.parse_args()
