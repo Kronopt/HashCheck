@@ -25,7 +25,7 @@ import os
 __author__ = 'Pedro HC David, https://github.com/Kronopt'
 __credits__ = ['Pedro HC David']
 __version__ = '0.5'
-__date__ = '02:00h, 16/06/2016'
+__date__ = '17:20h, 17/10/2016'
 __status__ = 'Production'
 
 
