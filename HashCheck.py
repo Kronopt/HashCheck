@@ -110,9 +110,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Multiple hash algorithm check tool')
 
     parser.add_argument('-hash', choices=hashlib.algorithms, default='md5',
-                        help='Available hash algorithms (chose one)')
-    parser.add_argument('-file', nargs='?', const=os.getcwd(), default=os.getcwd(),
-                        metavar='dir', help='Directory or file path, using forward slashes (/)')
+                        help='Available hash algorithms (chose one; defaults to md5)')
+    parser.add_argument('-file', nargs='?', const=os.getcwd(), default=os.getcwd(), metavar='dir',
+                        help='Directory or file path, using forward slashes (/) (defaults to current directory)')
 
     parser = parser.parse_args()
 
