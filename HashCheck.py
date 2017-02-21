@@ -21,7 +21,6 @@ HOW TO RUN:
 import argparse
 import hashlib
 import os
-from time import sleep
 
 __author__ = 'Pedro HC David, https://github.com/Kronopt'
 __credits__ = ['Pedro HC David']
@@ -74,7 +73,7 @@ def main(hash_algorithm, directory):
         else:
             print "'" + directory + "' does not exist..."
 
-    sleep(2)
+    raw_input("\nPress Enter to exit...")
 
 
 def hash_check(hash_algorithm, file_name):
